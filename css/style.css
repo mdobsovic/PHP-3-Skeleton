@@ -1,0 +1,5 @@
+body {padding-top: 50px;}
+.navbar-brand img {display: inline; width: 20px;}
+
+.data-table > thead > tr > th:last-child ,
+.data-table > tbody > tr > td:last-child {width: 160px;}
