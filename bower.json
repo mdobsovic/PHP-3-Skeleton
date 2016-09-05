@@ -1,0 +1,7 @@
+{
+  "name": "php-pdo-skel",
+  "description": "Kostra pre aplikaciu PDO v PHP",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
