@@ -15,5 +15,5 @@ Inštalácia
 - Stiahnuť repozitár
  - `git clone https://github.com/mdobsovic/php-pdo-skel.git`
 - Nainštalovať bower závislosti:
- - `cd php-pdo`
+ - `cd php-pdo-skel`
  - `bower install`
