@@ -2,4 +2,4 @@
 
 // implementovať ukladanie do databázy
 
-header('Location: index.php?page=zamestnanci');
+header('Location: /?page=zamestnanci');

@@ -1,5 +1,2 @@
-.idea/
-/assets/
-
 # v produkcnej verzii zmazat mriezku s nasledujuceho riadku:
 #/config/db.php

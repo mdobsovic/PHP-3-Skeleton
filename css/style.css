@@ -1,5 +1,29 @@
-body {padding-top: 50px;}
-.navbar-brand img {display: inline; width: 20px;}
+.navbar-brand img {
+    width: 20px;
+}
 
-.data-table > thead > tr > th:last-child ,
-.data-table > tbody > tr > td:last-child {width: 160px;}
+.data-table > thead > tr > th:last-child,
+.data-table > tbody > tr > td:last-child {
+    width: 160px;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input#username {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input#password {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}

@@ -3,37 +3,45 @@ function showError(message) {
 }
 
 function deleteRow(type, id, btn) {
-    $.getJSON('ajax.php', {
-        action: type + '-delete',
-        id: id
-    }, function(data) {
-        if (data.status == 'OK') {
-            btn.closest('tr').fadeOut();
-        } else {
-            showError(data.status);
+    $.getJSON(
+        "ajax.php",
+        {
+            action: type + "-delete",
+            id: id,
+        },
+        function (data) {
+            if (data.status == "OK") {
+                btn.closest("tr").fadeOut();
+            } else {
+                showError(data.status);
+            }
         }
-    });
+    );
 }
 
-$(function() {
-    $('.btn-zamestnanci').on('click', function() {
-        var $this = $(this);
-        if ($this.data('action') == 'edit') {
-            window.location.href = 'index.php?page=zamestnanci-edit&id=' + $this.data('id');
-            return true;
+$(function () {
+    $(".zamestnanci-delete").on("click", function () {
+        const potvrdenie = window.confirm("Naozaj chcete zmazať tohto zamestnanca?");
+        if (!potvrdenie) {
+            return false;
         }
-        if ($this.data('action') == 'delete') {
-            deleteRow('zamestnanci', $this.data('id'), $this);
-        }
+        const $this = $(this);
+        deleteRow("zamestnanci", $this.data("id"), $this);
     });
-    $('.btn-oddelenia').on('click', function() {
-        var $this = $(this);
-        if ($this.data('action') == 'edit') {
-            window.location.href = 'index.php?page=oddelenia-edit&id=' + $this.data('id');
-            return true;
+    $(".oddelenia-delete").on("click", function () {
+        const potvrdenie = window.confirm("Naozaj chcete zmazať toto oddelenie?");
+        if (!potvrdenie) {
+            return false;
         }
-        if ($this.data('action') == 'delete') {
-            deleteRow('oddelenia', $this.data('id'), $this);
+        const $this = $(this);
+        deleteRow("oddelenia", $this.data("id"), $this);
+    });
+    $(".pouzivatelia-delete").on("click", function () {
+        const potvrdenie = window.confirm("Naozaj chcete zmazať tohto používateľa?");
+        if (!potvrdenie) {
+            return false;
         }
+        const $this = $(this);
+        deleteRow("pouzivatelia", $this.data("id"), $this);
     });
 });

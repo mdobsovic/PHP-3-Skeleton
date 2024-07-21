@@ -8,4 +8,7 @@
         case 'oddelenia-delete':
             echo json_encode(['status'=>'OK']);
             break;
+        case 'pouzivatelia-delete':
+            echo json_encode(['status'=>'OK']);
+            break;
     }
