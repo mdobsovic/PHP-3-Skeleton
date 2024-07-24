@@ -1,4 +1,4 @@
-<form method="post" action="/?page=zamestnanci-save" class="form-horizontal">
+<form method="post" action="/zamestnanci-save.php" class="form-horizontal">
     <?php if (isset($zamestnanec['id'])) { ?>
         <h1>Upraviť zamestnanca <?= $zamestnanec['meno']; ?> <?= $zamestnanec['priezvisko']; ?></h1>
         <input type="hidden" name="id" value="<?= $zamestnanec['id']; ?>">

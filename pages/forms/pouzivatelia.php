@@ -1,4 +1,4 @@
-<form method="post" action="/?page=pouzivatelia-save" class="form-horizontal">
+<form method="post" action="/pouzivatelia-save.php" class="form-horizontal">
     <?php if (isset($pouzivatel['id'])) { ?>
         <h1>Upraviť používateľa <?= $pouzivatel['meno']; ?> <?= $pouzivatel['priezvisko']; ?></h1>
         <input type="hidden" name="id" value="<?= $pouzivatel['id']; ?>">

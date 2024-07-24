@@ -1,4 +1,4 @@
-<form method="post" action="/?page=oddelenia-save" class="form-horizontal">
+<form method="post" action="/oddelenia-save.php" class="form-horizontal">
     <?php if (isset($oddelenie['id'])) { ?>
         <h1>Upraviť oddelenie <?= $oddelenie['nazov']; ?></h1>
         <input type="hidden" name="id" value="<?= $oddelenie['id']; ?>">
