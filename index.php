@@ -1,16 +1,19 @@
 <?php
+session_start();
+if (isset($_SESSION['hlasky'])) {
+    $hlasenia = $_SESSION['hlasky'];
+    unset($_SESSION['hlasky']);
+}
     $page = filter_input(INPUT_GET, 'page') ?? 'home';
     
-    // konfigurácia prístupov do DB:
-    require __DIR__ . '/config/db.php';
+    require __DIR__ . '/pripojit-databazu.php';
 
-    // pripojenie na databázu
-    try {
-    //    $db = new PDO(DB_DSN, DB_USER, DB_PASS, $pdoOptions);
-    } catch (PDOException $e) {
 
-    }
-
+    // $string = '<a href="https://www.itlearning.sk">\'IT <strong>LEARNING</strong>\'</a>';
+    // echo json_encode($string); // tak, aby sa s tym dalo bezpecne pracovat v JavaScripte
+    // echo htmlspecialchars($string); // nahradi specialne znaky HTML entitami
+    // echo strip_tags($string, '<strong><a>');    // odstrani vsetky HTML tagy, pripadne okrem tych, ktore su dane ako druhy parameter
+    // exit;
 ?>
 <!doctype html>
 <html lang="sk">

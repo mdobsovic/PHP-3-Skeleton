@@ -24,16 +24,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/login-form.php">Prihlasovanie</a>
                 </li>
+                <?php if (isset($_SESSION['user'])) { ?>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=zmenit-heslo">Zmeniť heslo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout.php">Odhlásenie</a>
                 </li>
+                <?php } ?>
             </ul>
         </div>
         <div>
-            neprihlásený používateľ
+            <?= isset($_SESSION['user']) ? $_SESSION['user']['meno'] . ' ' . $_SESSION['user']['priezvisko'] : 'neprihlásený používateľ'; ?>
         </div>
     </div>
 </nav>

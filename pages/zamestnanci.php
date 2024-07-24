@@ -1,3 +1,12 @@
+<?php
+    $query = 'SELECT 
+        z.id, z.meno, z.priezvisko, z.telefon, z.email,
+        o.nazov AS oddelenie
+    FROM zamestnanci AS z
+    LEFT JOIN oddelenia AS o ON o.id = z.oddelenie;';
+    $zamestnanci = $__db->prepare($query);
+    $zamestnanci->execute();
+?>
 <h1>Zamestnanci</h1>
 <a href="index.php?page=zamestnanci-new" class="btn btn-success">
     <i class="bi bi-plus-circle"></i>
@@ -15,18 +24,18 @@
         </tr>
     </thead>
     <tbody>
-        <?php for ($i = 0; $i < 10; $i++) { ?>
+        <?php foreach ($zamestnanci->fetchAll() as $zam) { ?>
             <tr>
-                <td>Peter</td>
-                <td>Novák</td>
-                <td>02/4920 3080</td>
-                <td>novak@itlearning.sk</td>
-                <td>Personálne oddelenie</td>
+                <td><?= $zam['meno']; ?></td>
+                <td><?= $zam['priezvisko']; ?></td>
+                <td><?= $zam['telefon']; ?></td>
+                <td><?= $zam['email']; ?></td>
+                <td><?= $zam['oddelenie'] ?? '<span class="badge text-bg-danger">nevyplnené</span>'; ?></td>
                 <td>
-                    <a href="/?page=zamestnanci-edit&id=1" class="btn btn-primary btn-sm" title="Upraviť">
+                    <a href="/?page=zamestnanci-edit&id=<?= $zam['id']; ?>" class="btn btn-primary btn-sm" title="Upraviť">
                         <i class="bi bi-pencil"></i>
                     </a>
-                    <button type="button" class="btn btn-danger btn-sm zamestnanci-delete" data-id="1" title="Zmazať">
+                    <button type="button" class="btn btn-danger btn-sm zamestnanci-delete" data-id="<?= $zam['id']; ?>" title="Zmazať">
                         <i class="bi bi-trash"></i>
                     </button>
                 </td>

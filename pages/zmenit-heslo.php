@@ -1,3 +1,46 @@
+<?php
+// ak pouzivatel nie je prihlaseny, zobrazim chybove hlasenie
+    if (!isset($_SESSION['user'])) {
+        $hlasenia[] = [
+            'typ' => 'danger',
+            'text' => 'Táto funkcia je iba pre prihlásených používateľov.',
+            'ikona' => 'x-circle',
+        ];
+        return;
+    }
+
+    if (isset($_GET['err'])) {
+        // switch ($_GET['err']) {
+        //     case '1':
+        //         $text = 'Aktuálne heslo nie je správne.';
+        //         break;
+        //     case '2':
+        //         $text = 'Heslo musí mať minimálne 8 znakov.';
+        //         break;
+        //     case '3':
+        //         $text = 'Heslo musí obsahovať aspoň 1 malé písmeno, aspoň 1 veľké písmeno a aspoň jednu číslicu.';
+        //         break;
+        //     case '4':
+        //         $text = 'Nové heslo a potvrdenie hesla sa nezhodujú.';
+        //         break;
+        //     default:
+        //         $text = 'Nastala chyba.';
+        //         break;
+        // }
+        $text = match($_GET['err']) {
+            '1' => 'Aktuálne heslo nie je správne.',
+            '2' => 'Heslo musí mať minimálne 8 znakov.',
+            '3' => 'Heslo musí obsahovať aspoň 1 malé písmeno, aspoň 1 veľké písmeno a aspoň jednu číslicu.',
+            '4' => 'Nové heslo a potvrdenie hesla sa nezhodujú.',
+            default => 'Nastala chyba.',
+        };
+        $hlasenia[] = [
+            'typ' => 'danger',
+            'text' => $text,
+            'ikona' => 'x-circle',
+        ];
+    }
+?>
 <form method="post" action="/change-password.php" class="form-horizontal">
     <h1>Zmeniť heslo</h1>
 

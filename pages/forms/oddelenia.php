@@ -1,3 +1,12 @@
+<?php
+    // tento dotaz mi nacita zoznam zamestnancov pre roletku Veduci
+    // nepotrebujem ziskavat vsetky udaje (napr. telefon, e-mail a oddelenie)
+    // potrebujem iba id, meno a priezvisko, zamestnancov chcem vypisat abecedne podla priezviska,
+    // preto dotaz bude vyzerat nasledovne:
+    $query = 'SELECT id, meno, priezvisko FROM zamestnanci ORDER BY priezvisko;';
+    $zamestnanci = $__db->prepare($query);
+    $zamestnanci->execute();
+?>
 <form method="post" action="/oddelenia-save.php" class="form-horizontal">
     <?php if (isset($oddelenie['id'])) { ?>
         <h1>Upraviť oddelenie <?= $oddelenie['nazov']; ?></h1>
@@ -18,6 +27,13 @@
         <div class="col-md-4">
             <select id="veduci" name="veduci" class="form-select">
                 <option value="">vyberte zamestnanca</option>
+                <?php foreach ($zamestnanci->fetchAll() as $zam) { 
+                    // <option value="1">Peter Novak</option>
+                    // <option value="2">Jan Vesely</option>
+                    // <option value="3" selected>Jana Vysoka</option>
+                    ?>
+                    <option value="<?= $zam['id']; ?>"<?= $zam['id'] === ($oddelenie['veduci'] ?? '') ? ' selected' : ''; ?>><?= $zam['meno']; ?> <?= $zam['priezvisko']; ?></option>
+                <?php } ?>
             </select>
         </div>
     </div>

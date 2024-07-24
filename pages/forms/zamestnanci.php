@@ -1,3 +1,9 @@
+<?php
+// nacitam z databazy oddelenia pre pouzitie vo vyberovom policku v stranke:
+    $query = 'SELECT id, nazov FROM oddelenia ORDER BY nazov;';
+    $oddelenia = $__db->prepare($query);
+    $oddelenia->execute();
+?>
 <form method="post" action="/zamestnanci-save.php" class="form-horizontal">
     <?php if (isset($zamestnanec['id'])) { ?>
         <h1>Upraviť zamestnanca <?= $zamestnanec['meno']; ?> <?= $zamestnanec['priezvisko']; ?></h1>
@@ -39,6 +45,9 @@
         <div class="col-md-4">
             <select id="oddelenie" name="oddelenie" class="form-select">
                 <option value="">vyberte oddelenie</option>
+                <?php foreach ($oddelenia->fetchAll() as $odd) { ?>
+                    <option value="<?= $odd['id']; ?>"<?= $odd['id'] === ($zamestnanec['oddelenie'] ?? '') ? ' selected' : ''; ?>><?= $odd['nazov']; ?></option>
+                <?php } ?>
             </select>
         </div>
     </div>

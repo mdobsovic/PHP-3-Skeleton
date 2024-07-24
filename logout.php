@@ -1,2 +1,4 @@
 <?php
-// v tomto súbore budeme implementovať funkcionalitu odhlásenia používateľa
+    session_start();
+    unset($_SESSION['user']);
+    header('Location: /');

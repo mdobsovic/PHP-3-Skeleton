@@ -1,3 +1,21 @@
+<?php
+    $query = 'SELECT id, meno, priezvisko, username, email FROM users;';
+    $users = $__db->prepare($query);
+    $users->execute();
+
+    // ak som vytvoril noveho pouzivatela a $_SESSION['heslo_plain'] existuje, vypisem hodnotu
+    // noveho hesla:
+    if (isset($_SESSION['heslo_plain'])) {
+        $hlasenia[] = [
+            'typ' => 'info',
+            'text' => (isset($_GET['reset']) ? 'Nové heslo je: ' : 'Bol vytvorený nový používateľ, jeho heslo je: ') . $_SESSION['heslo_plain'],
+            'ikona' => 'person-check',
+        ];
+        // zrusim session heslo_plain:
+        unset($_SESSION['heslo_plain']);
+    }
+
+?>
 <h1>Používatelia</h1>
 <a href="index.php?page=pouzivatelia-new" class="btn btn-success">
     <i class="bi bi-plus-circle"></i>
@@ -14,20 +32,20 @@
         </tr>
     </thead>
     <tbody>
-    <?php for ($i = 0; $i < 10; $i++) { ?>
+    <?php foreach ($users->fetchAll() as $user) { ?>
         <tr>
-            <td>Peter</td>
-            <td>Novák</td>
-            <td>peter.novak</td>
-            <td>novak@itlearning.sk</td>
+            <td><?= $user['meno']; ?></td>
+            <td><?= $user['priezvisko']; ?></td>
+            <td><?= $user['username']; ?></td>
+            <td><?= $user['email']; ?></td>
             <td>
-                <a href="/?page=pouzivatelia-edit&id=1" class="btn btn-primary btn-sm" title="Upraviť">
+                <a href="/?page=pouzivatelia-edit&id=<?= $user['id']; ?>" class="btn btn-primary btn-sm" title="Upraviť">
                     <i class="bi bi-pencil"></i>
                 </a>
-                <a href="/?page=pouzivatelia-heslo&id=1" class="btn btn-warning btn-sm" title="Resetovať heslo">
+                <a href="/?page=pouzivatelia-heslo&id=<?= $user['id']; ?>" class="btn btn-warning btn-sm" title="Resetovať heslo">
                     <i class="bi bi-key"></i>
                 </a>
-                <button type="button" class="btn btn-danger btn-sm pouzivatelia-delete" data-id="1" title="Zmazať">
+                <button type="button" class="btn btn-danger btn-sm pouzivatelia-delete" data-id="<?= $user['id']; ?>" title="Zmazať">
                     <i class="bi bi-trash"></i>
                 </button>
             </td>
